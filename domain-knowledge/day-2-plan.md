@@ -1,95 +1,132 @@
-# Day 2 plan: 3.5 hours to a report-out
+# Day 2 plan: 3.5 hours to a season-ahead projection
 
-Revised 2026-09-24 evening, after the debrief with Cassidi
-([raw](debrief-session-raw.md), [summary](debrief-session-summary.md)) and our working
-session ([raw](working-session-raw-09-24-26.md),
-[summary](working-session-summary-09-24-26.md)). Starts 9:00 on Sep 25; Cassidi and
-Jake are both in the room.
+Revised 2026-09-24 evening. Priority set by the group: **make forecasting possible.**
+Sources: the debrief with Cassidi ([raw](debrief-session-raw.md),
+[summary](debrief-session-summary.md)) and our working session
+([raw](working-session-raw-09-24-26.md), [summary](working-session-summary-09-24-26.md)).
+Starts 9:00 on Sep 25; Cassidi and Jake are both in the room.
 
-## What the debrief changed
+## What we're building
 
-| Before the debrief we thought | Cassidi said |
+A **season-ahead projection**: given next water year's snowpack and melt timing, which
+weeks at the Foothills plant are likely to be hard (alkalinity below 60 mg/L, TOC above
+4 mg/L), and why.
+
+Why this one:
+- Cassidi's biggest pain is that everything is "real-time or historical"; she wants to
+  "model these things ahead of time." Nobody forecasts quality at a point today.
+- Planners already think in dry, average and wet years. A projection keyed on snowpack
+  puts quality next to their quantity plan, which is the gap Scenario 3 names.
+- It can be built from data we already have, with no machine learning, and it can
+  explain itself.
+
+What it is not: a 12-hour alert. That needs continuous data at the plant intake (see
+[QUESTIONS.md](QUESTIONS.md) #7). It goes in the report-out as the next step.
+
+## How the projection works
+
+Three steps, each one visible on the page.
+
+**1. Describe the year** (the input)
+- Snow index: basin peak SWE as % of median (4 SNOTEL stations inside the South Platte
+  basin: Buckskin Joe, Jackwhacker Gulch, Michigan Creek, Rough And Tumble).
+- Peak shift: days the snow peaked before or after the median day.
+- Presets from real years: dry like 2026 (index 54%, peak 27 days early, from the
+  11-station atlas), wet like 2024, plus manual sliders.
+- Later: fill these from live SNOTEL once WY 2027 snow starts on Oct 1.
+
+**2. Find analog years** (the model)
+- From WY 2022 to 2026 (the years with plant data), pick the closest by snow index and
+  peak shift.
+- Shift their weekly quality by the peak-shift difference, so an early-melt year moves
+  the runoff weeks earlier.
+- The projection is the blend of those analogs, shown as a band from lowest to highest,
+  not a single line.
+
+**3. Show the hard weeks** (the output)
+- A **hard-weeks calendar**: one row per real water year (2022 to 2026) and one row for
+  the projection. Each cell is one week, colored by median alkalinity or TOC. Weeks
+  below 60 or above 4 are flagged.
+- Next to the projected row: "expect N hard weeks, mostly in May–June; based on WY 2023
+  and 2024 shifted 12 days earlier." No hidden math.
+
+**Trust check: backtest.** Project each of 2022 to 2026 from the other four years and
+compare with what actually happened, week by week. Show the score next to a naive
+baseline (the average of all other years). If the projection doesn't beat the naive
+baseline, say so. That result is worth reporting too.
+
+**Stretch: snow to runoff with 40 years of data.** The SNOTEL history goes back to
+1980, and DWR flow at the headwater creeks back to about 1985. Fit simple straight
+lines for snow index to Apr–Jul runoff volume, and snow peak date to runoff peak date,
+and show R². This sharpens step 2's timing shift and gives the quantity team their
+view. It needs the DWR history pull, which hit the daily limit tonight, so it can't be
+on the critical path.
+
+## Slices, in build order
+
+Each slice can be demoed on its own. The domain rules go in one small module of pure
+functions with tests, since these rules are the model:
+
+| Rule | Where it's used |
 |---|---|
-| We had to choose between a seasonal outlook and a 12-hour alert. | Her biggest problem is **no visualization**: "we don't have visualization on this." The goal is a digital twin that tells "the story" of different conditions across the organization, looking ahead, not just at now or the past. |
-| One audience: plant operators. | **Three audiences** looking at the same water: the water quantity team (about 50 people: how much, how to move it, water rights), her watershed scientists (quality, regulation, stewardship), and the plants (what's arriving, how to treat it at least cost). |
-| We'd have to ask for a real event. | She named one: a **100-year storm in the South Platte in 2023**. They knew it was coming but not its scale. Turbidity nearly shut the plant down; filters went offline for cleaning and the plant slowed the water it could deliver. That was the trigger to "look at ahead of time." |
-| The cost of a bad week was unknown. | Treatment chemicals cost "hundreds of millions of dollars." |
-| Forecasting might exist somewhere. | Weather and radar feed only the big-picture quantity estimates, "not for looking at a point in a stream." Quality monitoring is real-time or historical only. |
+| Group by water year (Oct 1 to Sep 30), never calendar year | Everything |
+| Weekly median of plant samples; weeks with no samples are empty, not zero | Calendar, analogs |
+| Hard week: median alkalinity below 60 mg/L, or TOC above 4 mg/L | Calendar, backtest |
+| Snow index and peak shift for a water year | Inputs, analogs |
+| Closest analogs by snow index and peak shift | Projection |
+| Shift a weekly series by N days | Projection |
 
-## What the data shows for 2023
+**1. Hard-weeks calendar (history)** — 9:45–10:30
+- Given the Foothills samples, each of WY 2022 to 2026 shows one row of weekly cells, Apr
+  to Dec, with hard weeks flagged and a count per row.
+- It's the foundation: the projection adds one more row.
 
-Computed from the repo files (provisional readings). We don't know which of these is the
-100-year storm. **Ask Cassidi.**
+**2. Projection row** — 10:30–11:15
+- Presets and sliders for snow index and peak shift produce the projected row, its band,
+  and the plain-language "why."
+- Changing the inputs updates the row immediately.
 
-- **May 11–12, 2023:** turbidity above Strontia reached 185 NTU (daily max). TOC at
-  Foothills peaked at 7.3 mg/L on May 19–20, about a week later. That's the highest TOC
-  in the five years.
-- **Aug 1, 2023:** turbidity above Strontia reached 477 NTU, the highest daily max in
-  the file.
-- Flow at PLASPLCO peaked Jun 17 at 1,090 cfs, which is snowmelt plus releases, not the
-  storm.
+**3. Backtest score** — 11:15–11:40
+- Leave-one-year-out for 2022 to 2026: projected vs actual hard weeks, compared with the
+  naive baseline, in a small table.
 
-## Direction
+**4. Stretch, in this order:** snow-to-runoff fits (if the DWR pull works), then the 2023
+storm replay (turbidity 185 NTU on May 11–12, 2023; TOC 7.3 mg/L at Foothills on May
+19–20), then moving dots on the map.
 
-**One view of the water, three lenses, anchored on 2023.** The Intake Explorer already
-has the shared skeleton: map, route, water years, flow, and quality at the plant. Day 2
-turns it into the story Cassidi asked for:
-
-1. **Replay 2023** (the demo moment). A stacked timeline, one shared date axis, top to
-   bottom in flow order: snow at the basin's SNOTEL stations, flow along the route,
-   turbidity above Strontia, TOC and alkalinity at Foothills. Mark each peak and the days
-   between them. Question it answers: *what did the system show before the plant got
-   hit?*
-2. **Regime per water year**, now including storms. Label each year by what dominated:
-   snowmelt (snowpack size and peak timing) or storm (count of turbidity spikes above a
-   threshold we choose). 2023 is both. The glossary's **regime** is the term, and the
-   labels stay provisional until the planners give us theirs.
-3. **Hard weeks calendar.** One row per water year, one cell per week: weeks with
-   alkalinity below 60 mg/L, TOC above 4 mg/L, or a turbidity spike. Answers "which
-   weeks should we expect trouble?" for the plant and quality teams.
-4. **Three lenses** (stretch). A toggle for quantity, quality or plant that reorders the
-   same page for each audience. It's also the DDD story: three bounded contexts sharing
-   one model of the water.
-
-Dropped or deferred:
-- **Projection:** only 5 years of quality data, so it moves to "next step." If time
-  allows, reuse the analog years from the first POC.
-- **12-hour alert:** it needs continuous data at the plant intake. Present it as the next
-  step after the 2023 replay, which shows how much warning the river sensor gave.
-- **Scenario 2 overlap:** the group wanted storms kept out, but Cassidi's own example is
-  a storm. Storms stay in only as a regime label and in the 2023 replay; depth profiles
-  and in-reservoir modeling stay out.
+Put the calendar and projection on the Intake Explorer page so the map and gauge
+context stay.
 
 ## Schedule
 
 | Time | What | Who |
 |---|---|---|
 | 9:00–9:15 | Laptops working (personal laptop for the Ford proxy). Everyone reads this page. | All |
-| 9:15–9:35 | Ask Cassidi and Jake the open questions in [QUESTIONS.md](QUESTIONS.md). First: which 2023 date was the storm. | One person |
-| 9:15–9:45 | On the wall: the three contexts (quantity, quality, plant), what each needs to see, and the shared terms (water year, regime, gauge, route, sample, removal requirement, lag). | Other two |
-| 9:45–11:30 | Build in parallel: (1) 2023 replay, (2) regime labels + hard weeks calendar, (3) data script for the DWR and NLDI pulls, then the lenses toggle if time. Merge every 30 minutes. | Split |
-| 11:30–12:00 | Put it together. Screenshot, then "find 3 things to improve" passes. Show Cassidi or Jake for 5 minutes and fix one thing they say. | All |
+| 9:15–9:35 | Questions for Cassidi and Jake ([QUESTIONS.md](QUESTIONS.md)), led by #10 and #11 on the projection. | One person |
+| 9:15–9:30 | Kick off the DWR history pull once and save it to the repo, since the API has a daily limit. If it fails, drop the stretch fits. | One person |
+| 9:15–9:45 | On the wall: the rules table above, the terms (water year, regime, analog year, hard week, projection, removal requirement), and the three teams (quantity, quality, plant). | Rest |
+| 9:45–11:40 | Slices 1 to 3. One person on the rules module and tests, one on the page, one on data and backtest. Merge every 30 minutes. | Split |
+| 11:40–12:00 | Show Cassidi or Jake the projection for 5 minutes and fix one thing they say. | All |
 | 12:00–12:30 | Rehearse the report-out twice. | All |
-
-## Acceptance checks
-
-- **2023 replay:** all tracks share one date axis; no chart has two y-axes. Each peak is
-  labeled with its date and value from the files. Missing data shows as a gap, never
-  a zero.
-- **Regime:** each water year shows snowpack % of median, snow peak shift in days, and
-  number of turbidity spike days, with a provisional label.
-- **Hard weeks:** weeks with no samples show as empty. The 60 mg/L and 4 mg/L lines
-  are named on the page.
-- **Everything:** real numbers only, Denver Water's notices kept, "provisional" stated.
 
 ## Report-out (3 minutes)
 
-1. **Their words:** "we don't have visualization on this"; three teams looking at the
-   same water; the 2023 storm.
-2. **Replay 2023:** snow, flow, turbidity, TOC in one view, and how many days of warning
-   the river gave before TOC peaked at the plant.
-3. **Regimes and hard weeks:** 2023 vs 2026, snowmelt vs storm vs drought.
-4. **DDD:** three bounded contexts, one shared model of the water; regime as a domain
-   term we learned from the glossary, not invented.
-5. **Limits and next step:** 5 years; daily hand samples; 2026 source switching. Next:
-   continuous intake data for a 12-hour warning.
+1. **Their words:** "we don't have visualization on this"; quality is "real-time or
+   historical"; the 2023 storm that nearly shut the plant.
+2. **Demo:** pick "dry like 2026" and "wet like 2024," and watch the hard weeks move.
+   Read the "why."
+3. **Can you trust it:** the backtest score against the naive baseline, stated plainly.
+4. **DDD:** the rules module is the domain model: water year, hard week, regime,
+   analog year. Three teams share it and each reads it differently.
+5. **Limits and next step:** 5 years of plant data; 2026 source switching; weekly, not
+   hourly. Next: live SNOTEL input for WY 2027, and continuous intake data for a 12-hour
+   alert.
+
+## Risks
+
+- **Five years of plant data.** Analogs are thin. The backtest makes that visible;
+  don't hide it.
+- **DWR daily data limit.** Pull once, cache in the repo, and keep the stretch off the
+  critical path.
+- **2026 source switching.** 2026's quality may partly reflect operations. Label it.
+- **Scope.** If slice 1 isn't done by 10:30, drop the stretch entirely.

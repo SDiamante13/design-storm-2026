@@ -135,6 +135,26 @@ source record we can't tell snowpack effects from operating choices.
 
 **Answer:** _open_
 
+## For both: the projection
+
+### 10. When in the year do the planners make their dry, average or wet call, and what do they base it on?
+
+**What it tells us:** when our projection should be issued and which inputs it should
+take. If they decide in spring from snowpack, our inputs should be the same numbers
+they use on the same date.
+
+**Answer:** _open_
+
+### 11. What would make you trust a season-ahead quality projection?
+
+For example, how it would have done in past years, or an error range. Which mistake
+costs more: warning of hard weeks that never come, or missing hard weeks that do?
+
+**What it tells us:** how to present the backtest, and whether to tune the projection
+to over-warn or under-warn.
+
+**Answer:** _open_
+
 ## Only if there's time
 
 - Which SNOTEL station does the model use now? In the debrief Jake said they switched
