@@ -53,4 +53,8 @@ said runoff peaked.
 
 **Why we ask.** It decides how we frame the report-out and what the model shows first.
 
-**Answer:** _open_
+**Answer:** _partial._ Cassidi, Sep 24 Q&A, on visualization in general (not this view
+specifically): all three groups, for different reasons. The quantity team (~50 people)
+cares about volume and water rights, her quality team about regulation, and the plants
+about what's coming in and how to treat it cheaply. See
+[denver-water-qa-summary.md](denver-water-qa-summary.md).
