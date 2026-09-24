@@ -6,136 +6,150 @@
     --surface: #fcfcfb;
     --ink: #0b0b0b;
     --ink-2: #52514e;
-    --ink-3: #85847e;
+    --ink-3: #6b6a65;
     --line: #e2e1dc;
     --grid: #ecebe7;
+    --hover: #f0efeb;
     --accent: #2a78d6;
     --accent-ink: #1c5cab;
-    --path: rgba(40, 40, 38, 0.18);
-    --seq-a: #b7d3f6;
-    --seq-b: #6da7ec;
-    --seq-c: #256abf;
-    --seq-d: #0d366b;
+    --accent-soft: rgba(42, 120, 214, 0.10);
+    --path: rgba(40, 40, 38, 0.22);
+    --s-fall: #2a78d6;
+    --s-runoff: #eb6834;
+    --s-summer: #1baf7a;
+    --year-a: #4a3aa7;
+    --year-b: #e87ba4;
     --threshold: #b8322f;
     --what-if: #52514e;
     --river: #86b6ef;
-    --basin: rgba(42, 120, 214, 0.05);
+    --basin: rgba(42, 120, 214, 0.06);
     --reservoir: #52514e;
-    --plant: #1baf7a;
+    --plant: #0b0b0b;
     --tunnel: #c98500;
-    --year-a: #2a78d6;
-    --year-b: #eb6834;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       color-scheme: dark;
-      --bg: #121211; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --ink-3: #8f8e87;
-      --line: #30302d; --grid: #262624; --accent: #3987e5; --accent-ink: #86b6ef; --path: rgba(255,255,255,0.16);
-      --seq-a: #184f95; --seq-b: #2a78d6; --seq-c: #6da7ec; --seq-d: #cde2fb;
-      --threshold: #e66767; --what-if: #c3c2b7; --river: #2f5f99; --basin: rgba(57, 135, 229, 0.07); --reservoir: #c3c2b7; --plant: #199e70; --tunnel: #c98500; --year-a: #3987e5; --year-b: #d95926;
+      --bg: #121211; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --ink-3: #9d9c95;
+      --line: #30302d; --grid: #262624; --hover: #232322; --accent: #3987e5; --accent-ink: #86b6ef; --accent-soft: rgba(57, 135, 229, 0.16);
+      --path: rgba(255, 255, 255, 0.18); --s-fall: #3987e5; --s-runoff: #d95926; --s-summer: #199e70;
+      --year-a: #9085e9; --year-b: #d55181; --threshold: #e66767; --what-if: #c3c2b7;
+      --river: #4a7fc4; --basin: rgba(57, 135, 229, 0.10); --reservoir: #c3c2b7; --plant: #ffffff; --tunnel: #c98500;
     }
   }
   :root[data-theme="dark"] {
     color-scheme: dark;
-    --bg: #121211; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --ink-3: #8f8e87;
-    --line: #30302d; --grid: #262624; --accent: #3987e5; --accent-ink: #86b6ef; --path: rgba(255,255,255,0.16);
-    --seq-a: #184f95; --seq-b: #2a78d6; --seq-c: #6da7ec; --seq-d: #cde2fb;
-    --threshold: #e66767; --what-if: #c3c2b7; --river: #2f5f99; --basin: rgba(57, 135, 229, 0.07); --reservoir: #c3c2b7; --plant: #199e70; --tunnel: #c98500; --year-a: #3987e5; --year-b: #d95926;
+    --bg: #121211; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --ink-3: #9d9c95;
+    --line: #30302d; --grid: #262624; --hover: #232322; --accent: #3987e5; --accent-ink: #86b6ef; --accent-soft: rgba(57, 135, 229, 0.16);
+    --path: rgba(255, 255, 255, 0.18); --s-fall: #3987e5; --s-runoff: #d95926; --s-summer: #199e70;
+    --year-a: #9085e9; --year-b: #d55181; --threshold: #e66767; --what-if: #c3c2b7;
+    --river: #4a7fc4; --basin: rgba(57, 135, 229, 0.10); --reservoir: #c3c2b7; --plant: #ffffff; --tunnel: #c98500;
   }
+  [hidden] { display: none !important; }
   html, body { background: var(--bg); color: var(--ink); }
   body { font: 14px/1.5 "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif; padding-inline: 16px; padding-block: 20px 36px; }
-  .wrap { max-width: 1240px; margin: 0 auto; display: grid; gap: 18px; }
-  .eyebrow { font: 500 11px/1.2 "IBM Plex Mono", ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); }
-  h1 { font: 600 26px/1.15 "IBM Plex Sans Condensed", "IBM Plex Sans", sans-serif; margin: 4px 0 6px; text-wrap: balance; letter-spacing: -0.01em; }
-  header p { margin: 0; color: var(--ink-2); max-width: 74ch; }
-  .filters { display: flex; flex-wrap: wrap; gap: 14px 20px; align-items: end; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
-  .field { display: grid; gap: 4px; }
-  .field > span { font: 500 11px/1.2 "IBM Plex Mono", ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); }
+  .wrap { max-width: 1240px; margin: 0 auto; display: grid; gap: 16px; }
+  .eyebrow, .lbl { font: 500 11px/1.2 "IBM Plex Mono", ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink-3); }
+  h1 { font: 600 26px/1.15 "IBM Plex Sans Condensed", "IBM Plex Sans", sans-serif; margin: 4px 0 6px; text-wrap: balance; }
+  h2 { font: 600 17px/1.25 "IBM Plex Sans Condensed", "IBM Plex Sans", sans-serif; margin: 0; text-wrap: balance; }
+  h3 { font: 600 14px/1.3 "IBM Plex Sans", sans-serif; margin: 0; }
+  header p { margin: 0; color: var(--ink-2); max-width: 78ch; }
+  .asks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 18px; margin: 10px 0 0; padding: 0; list-style: none; font-size: 13px; color: var(--ink-2); }
+  .asks b { color: var(--ink); font-weight: 600; }
+  @media (max-width: 760px) { .asks { grid-template-columns: minmax(0, 1fr); } }
+  .filters { display: flex; flex-wrap: wrap; gap: 12px 22px; align-items: end; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  .field { display: grid; gap: 5px; }
   .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
   .seg button { font: inherit; font-size: 13px; padding: 6px 12px; border: 0; background: transparent; color: var(--ink-2); cursor: pointer; }
+  .seg button:hover { background: var(--hover); }
   .seg button[aria-pressed="true"] { background: var(--accent); color: #fff; }
-  select { font: inherit; font-size: 13px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; max-width: 100%; }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; }
   .chip { font: 500 12.5px/1 "IBM Plex Mono", ui-monospace, monospace; padding: 7px 9px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--ink-3); cursor: pointer; }
-  .chip[aria-pressed="true"] { color: var(--ink); border-color: var(--ink-2); }
-  .range { display: flex; gap: 8px; align-items: center; font-variant-numeric: tabular-nums; font-size: 13px; }
+  .chip:hover { background: var(--hover); }
+  .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .chip[aria-disabled="true"] { cursor: not-allowed; opacity: .75; }
+  .range { display: flex; gap: 8px; align-items: center; font-size: 13px; font-variant-numeric: tabular-nums; }
   input[type=range] { accent-color: var(--accent); width: 150px; }
-  label.check { display: inline-flex; gap: 6px; align-items: center; font-size: 13px; color: var(--ink-2); }
-  button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .locnote { font-size: 12.5px; color: var(--ink-2); margin: -8px 2px 0; }
-  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-  @media (max-width: 1000px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 620px) { .grid { grid-template-columns: minmax(0, 1fr); } }
-  .panel { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 10px 6px; }
-  .panel h3 { margin: 0 0 2px 4px; font: 600 14px/1.3 "IBM Plex Sans", sans-serif; display: flex; justify-content: space-between; gap: 8px; }
+  label.check { display: inline-flex; gap: 6px; align-items: center; font-size: 13px; color: var(--ink-2); cursor: pointer; }
+  select { font: inherit; font-size: 13px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; }
+  button:focus-visible, select:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .gloss { font-size: 12px; color: var(--ink-3); margin: -6px 2px 0; }
+  .gloss b { color: var(--ink-2); font-weight: 600; }
+
+  .system { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 12px; }
+  @media (max-width: 900px) { .system { grid-template-columns: minmax(0, 1fr); } }
+  .mapcard, .ladder, .card, .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+  .mapcard { padding: 8px; }
+  .mapcard svg { display: block; width: 100%; height: 340px; }
+  @media (max-width: 620px) { .mapcard { display: none; } }
+  .maplbl { font-family: "IBM Plex Sans", sans-serif; font-weight: 500; fill: var(--ink-2); paint-order: stroke; stroke: var(--surface); }
+  .maplbl.strong { font-weight: 600; fill: var(--ink); }
+  .gnum { font-family: "IBM Plex Mono", monospace; font-weight: 600; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+  .gauge { cursor: pointer; }
+  .gauge:hover circle { stroke: var(--accent); stroke-width: 2.5; }
+  .gauge:focus-visible { outline: none; }
+  .gauge:focus-visible circle { stroke: var(--accent); stroke-width: 3; }
+  .ladder { padding: 12px; display: grid; align-content: start; }
+  .ladder .hint { font-size: 12px; color: var(--ink-3); margin: 2px 0 8px; }
+  .step { display: grid; grid-template-columns: 26px 1fr 64px; gap: 0 10px; align-items: center; text-align: left; font: inherit; color: var(--ink); background: transparent; border: 0; border-left: 2px solid var(--line); margin-left: 12px; padding: 5px 6px 5px 0; cursor: pointer; border-radius: 0 6px 6px 0; }
+  .step:hover { background: var(--hover); }
+  .step .n { margin-left: -14px; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font: 600 11px "IBM Plex Mono", monospace; background: var(--surface); border: 1.5px solid var(--ink-2); color: var(--ink); }
+  .step[aria-pressed="true"] { background: var(--accent-soft); }
+  .step[aria-pressed="true"] .n { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .step .nm { font-weight: 600; font-size: 13px; }
+  .step .mi { text-align: right; font: 12px "IBM Plex Mono", monospace; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  .step .via { grid-column: 2 / 4; font-size: 12px; color: var(--ink-2); padding-top: 2px; }
+  .step.end { cursor: default; }
+  .step.end:hover { background: transparent; }
+  .step.end .n { border-radius: 4px; background: var(--plant); border-color: var(--plant); color: var(--surface); }
+
+  .chartsHead { display: grid; gap: 6px; }
+  .legendbar { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; font-size: 12.5px; color: var(--ink-2); }
+  .key { display: inline-flex; gap: 6px; align-items: center; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .key i { display: inline-block; width: 18px; border-top: 2px dashed var(--threshold); }
+  .key i.wi { border-top: 2px solid var(--what-if); }
+  .charts { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 12px; align-items: start; }
+  @media (max-width: 900px) { .charts { grid-template-columns: minmax(0, 1fr); } .readout { order: -1; } }
+  .panels { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 12px; }
+  .panel { position: relative; padding: 10px 10px 6px; }
+  .panel h3 { margin: 0 0 2px 4px; display: flex; justify-content: space-between; gap: 8px; }
   .panel h3 small { font: 400 11.5px/1.3 "IBM Plex Mono", monospace; color: var(--ink-3); }
   .panel svg { display: block; width: 100%; height: auto; }
   .axis { font: 10px "IBM Plex Mono", ui-monospace, monospace; fill: var(--ink-3); }
-  .tip { position: absolute; pointer-events: none; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px; font: 12px/1.35 "IBM Plex Mono", monospace; box-shadow: 0 4px 14px rgba(0,0,0,.12); white-space: nowrap; z-index: 3; }
-  .readout { display: grid; gap: 10px; align-content: start; }
-  .readout h3 { margin: 0; }
+  .tip { position: absolute; pointer-events: none; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px; font: 12px/1.35 "IBM Plex Mono", monospace; box-shadow: 0 4px 14px rgba(0,0,0,.14); white-space: nowrap; z-index: 3; }
+  .card { padding: 12px 14px; display: grid; gap: 10px; align-content: start; }
+  .readout { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); }
   .readout .big { font: 600 22px/1.1 "IBM Plex Sans Condensed", sans-serif; font-variant-numeric: tabular-nums; }
-  .readout input[type=range] { width: 100%; accent-color: var(--what-if); }
+  .readout input[type=range] { width: 100%; accent-color: var(--ink-2); }
+  .sum { font-size: 13px; color: var(--ink-2); margin: 0; }
+  .sum strong { color: var(--ink); }
   table { width: 100%; border-collapse: collapse; font: 12.5px/1.3 "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; }
-  th, td { padding: 4px 3px; border-bottom: 1px solid var(--line); text-align: right; }
+  th, td { padding: 5px 4px; border-bottom: 1px solid var(--line); text-align: right; }
   th:first-child, td:first-child { text-align: left; }
   th { font-weight: 500; color: var(--ink-3); font-size: 11px; }
   .muted { color: var(--ink-3); }
-  .flag { color: var(--threshold); }
-  .sum { font-size: 13px; color: var(--ink-2); margin: 0; }
-  .legendbar { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; font-size: 12px; color: var(--ink-2); }
-  .ramp { width: 160px; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--seq-a), var(--seq-b), var(--seq-c), var(--seq-d)); }
-  .rampwrap { display: grid; gap: 2px; }
-  .rampticks { display: flex; justify-content: space-between; width: 160px; font: 10px "IBM Plex Mono", monospace; color: var(--ink-3); }
-  .key { display: inline-flex; gap: 6px; align-items: center; }
-  .key i { display: inline-block; width: 18px; border-top: 2px dashed var(--threshold); }
-  .key i.wi { border-top: 2px solid var(--what-if); }
-  section.uses { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-  @media (max-width: 860px) { section.uses { grid-template-columns: minmax(0, 1fr); } }
-  .use { border-top: 2px solid var(--ink); padding-top: 8px; }
-  .use h4 { margin: 0 0 4px; font: 600 14px/1.3 "IBM Plex Sans", sans-serif; }
-  .use p { margin: 0; font-size: 13px; color: var(--ink-2); }
-  .use q { display: block; font-style: italic; color: var(--ink); margin-bottom: 4px; }
-  h2 { font: 600 17px/1.2 "IBM Plex Sans Condensed", sans-serif; margin: 0; }
-  .limits { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
-  .limits ul { margin: 6px 0 0; padding-left: 18px; font-size: 13px; color: var(--ink-2); display: grid; gap: 3px; }
-  .system { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 12px; }
-  @media (max-width: 900px) { .system { grid-template-columns: minmax(0, 1fr); } }
-  .mapcard { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px; position: relative; }
-  .mapcard svg { display: block; width: 100%; height: auto; }
-  .maplbl { font: 500 10.5px "IBM Plex Sans", sans-serif; fill: var(--ink-2); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; }
-  .maplbl.strong { font-weight: 600; fill: var(--ink); }
-  .gnum { font: 600 10px "IBM Plex Mono", monospace; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
-  .gauge { cursor: pointer; }
-  .gauge:focus-visible { outline: none; }
-  .gauge:focus-visible circle { stroke: var(--accent); stroke-width: 3; }
-  .ladder { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px; display: grid; gap: 0; align-content: start; }
-  .ladder h3 { margin: 0 0 8px; font: 600 14px/1.3 "IBM Plex Sans", sans-serif; }
-  .step { display: grid; grid-template-columns: 26px 1fr 60px; gap: 2px 10px; align-items: start; text-align: left; font: inherit; color: var(--ink); background: transparent; border: 0; border-left: 2px solid var(--line); margin-left: 12px; padding: 6px 6px 8px 0; cursor: pointer; }
-  .step .n { margin-left: -14px; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font: 600 11px "IBM Plex Mono", monospace; background: var(--surface); border: 1.5px solid var(--ink-2); color: var(--ink); }
-  .step[aria-pressed="true"] .n { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .step[aria-pressed="true"] .nm { color: var(--accent-ink); }
-  .step .nm { font-weight: 600; font-size: 13px; }
-  .step .mi { text-align: right; font: 12px "IBM Plex Mono", monospace; color: var(--ink-3); font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .step .via { grid-column: 2 / 4; font-size: 12px; color: var(--ink-2); }
-  .step.end { cursor: default; }
-  .step.end .n { border-color: var(--plant); background: var(--plant); color: #fff; border-radius: 3px; }
+  .flag { color: var(--threshold); font-weight: 600; }
+
   .compare { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; align-items: start; }
   @media (max-width: 900px) { .compare { grid-template-columns: minmax(0, 1fr); } }
-  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 10px; }
-  .card h3 { margin: 0; font: 600 14px/1.3 "IBM Plex Sans", sans-serif; }
   .yrrow { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; }
-  .yrrow label { display: grid; gap: 3px; font: 500 11px/1.2 "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-3); }
+  .yrrow label { display: grid; gap: 4px; }
   .swatch { display: inline-block; width: 14px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 5px; }
   .daybig { font: 600 22px/1.1 "IBM Plex Sans Condensed", sans-serif; font-variant-numeric: tabular-nums; }
   .daybig small { font: 400 12px "IBM Plex Sans", sans-serif; color: var(--ink-2); }
   #cmp-day { width: 100%; }
   .cmpchart { width: 100%; height: auto; display: block; }
-  tr.grp td { font: 500 10.5px "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-3); padding-top: 10px; border-bottom: 1px solid var(--line); }
-  tbody tr.row { cursor: pointer; }
-  tbody tr.row:hover td { background: var(--grid); }
-  tr.row.sel td { background: color-mix(in srgb, var(--accent) 12%, transparent); }
-  td.dn { color: var(--year-b); }
+  tr.grp td { font: 500 10.5px "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-3); padding-top: 12px; }
+  tr.row { cursor: pointer; }
+  tr.row:hover td { background: var(--hover); }
+  tr.row[aria-selected="true"] td { background: var(--accent-soft); }
+  tr.row.here td:first-child::after { content: " · on map"; color: var(--accent-ink); font-size: 11px; }
+  .short { display: none; }
+  @media (max-width: 620px) { .short { display: inline; } .long { display: none; } }
+
+  .limits { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  .limits ul { margin: 6px 0 0; padding-left: 18px; font-size: 13px; color: var(--ink-2); display: grid; gap: 3px; }
   footer { font-size: 11px; color: var(--ink-3); display: grid; gap: 6px; max-width: 110ch; }
   footer blockquote { margin: 0; padding-left: 10px; border-left: 2px solid var(--line); }
   footer a { color: var(--ink-2); }
@@ -146,58 +160,68 @@
   <header>
     <div class="eyebrow">Design Storm 2026 · Scenario 3 · proof of concept</div>
     <h1>Foothills Intake Explorer</h1>
-    <p>Water quality arriving at the Foothills plant plotted against river flow, one panel per water year, each dot one day colored by date. Change the gauge, the lag and the flow to see where the same river gives the plant different water.</p>
+    <p>How river flow upstream relates to the water arriving at the Foothills treatment plant, year by year. Pick a gauge on the map, then read the charts.</p>
+    <ul class="asks">
+      <li><b>Planners:</b> if next year runs dry, what water does the plant get?</li>
+      <li><b>Water quality:</b> does the spring TOC pulse follow rising flow, and which gauge sees it first?</li>
+      <li><b>Operators:</b> at today's flow, how close have past years been to the 60 mg/L alkalinity line?</li>
+    </ul>
   </header>
 
   <div class="filters" role="group" aria-label="Chart controls">
-    <div class="field"><span>Parameter at Foothills</span>
+    <div class="field"><span class="lbl">Measured at the plant</span>
       <div class="seg" id="param">
         <button type="button" data-p="alk" aria-pressed="true">Alkalinity</button>
         <button type="button" data-p="toc" aria-pressed="false">TOC</button>
       </div>
     </div>
-    <label class="field" for="loc"><span>Flow location</span><select id="loc"></select></label>
-    <div class="field"><span>Lag, flow leads quality</span>
-      <div class="range"><input type="range" id="lag" min="0" max="10" step="1" value="2" aria-label="Lag in days"><output id="lagout">2 days</output></div>
+    <div class="field"><span class="lbl" id="laglbl">Flow measured before the sample</span>
+      <div class="range"><input type="range" id="lag" min="0" max="10" step="1" value="2" aria-labelledby="laglbl"><output id="lagout">2 days</output></div>
     </div>
-    <div class="field"><span>Water years</span><div class="chips" id="years"></div></div>
-    <label class="check"><input type="checkbox" id="connect" checked> Connect days in order</label>
+    <div class="field"><span class="lbl">Water years shown</span><div class="chips" id="years"></div></div>
+    <label class="check"><input type="checkbox" id="connect"> Connect days in order</label>
   </div>
-  <p class="locnote" id="locnote"></p>
+  <p class="gloss"><b>TOC</b> total organic carbon · <b>Alkalinity</b> the water's acid buffer; below 60 mg/L the plant must remove 35% of TOC, above it 25% · <b>cfs</b> cubic feet of water per second · <b>SWE</b> snow water equivalent, inches of water in the snowpack · <b>Water year (WY)</b> Oct 1 to Sep 30, named for the year it ends</p>
 
   <section class="system" aria-label="Where the water goes">
     <div class="mapcard">
       <svg id="map" role="img" aria-label="Map of the South Platte gauges, reservoirs and the path to the Foothills plant"></svg>
     </div>
     <div class="ladder">
-      <h3>Upstream to the plant</h3>
+      <h3>Flow gauges, upstream to the plant</h3>
+      <p class="hint">Click a gauge on the map or a row here to use its flow in the charts.</p>
       <div id="ladder"></div>
     </div>
   </section>
 
-  <div class="legendbar">
-    <span class="rampwrap"><span class="ramp"></span><span class="rampticks"><span>Oct</span><span>Apr</span><span>Sep</span></span></span>
-    <span>Dot color = date in the water year. No Jan to Mar samples.</span>
-    <span class="key" id="thkey"><i></i>60 mg/L alkalinity: required TOC removal 35% below, 25% above</span>
-    <span class="key"><i class="wi"></i>What-if flow</span>
+  <div class="chartsHead">
+    <h2 id="chartsTitle"></h2>
+    <div class="legendbar">
+      <span class="key"><span class="dot" style="background:var(--s-fall)"></span>Oct to Dec</span>
+      <span class="key"><span class="dot" style="background:var(--s-runoff)"></span>Apr to Jun, snowmelt runoff</span>
+      <span class="key"><span class="dot" style="background:var(--s-summer)"></span>Jul to Sep</span>
+      <span class="muted">No plant samples Jan to Mar.</span>
+      <span class="key" id="thkey"><i></i>60 mg/L alkalinity line</span>
+      <span class="key"><i class="wi"></i>What-if flow ±20%</span>
+    </div>
   </div>
-
-  <div class="grid" id="grid">
-    <div class="panel readout" id="readout">
-      <h3>What-if flow</h3>
+  <div class="charts">
+    <div class="panels" id="panels"></div>
+    <aside class="card readout" aria-label="What-if flow">
+      <h3>What-if flow at this gauge</h3>
       <div class="big" id="wiout"></div>
       <input type="range" id="whatif" min="0" max="1000" step="1" aria-label="What-if flow">
       <table><thead><tr><th>WY</th><th id="rohead">Median</th><th>Range</th><th>Days</th></tr></thead><tbody id="rotable"></tbody></table>
       <p class="sum" id="rosum"></p>
-    </div>
+    </aside>
   </div>
 
   <h2>Two years, same day</h2>
   <section class="compare" aria-label="Compare two water years">
     <div class="card">
       <div class="yrrow">
-        <label for="cmp-a"><span><span class="swatch" style="background:var(--year-a)"></span>Year A</span><select id="cmp-a"></select></label>
-        <label for="cmp-b"><span><span class="swatch" style="background:var(--year-b)"></span>Year B</span><select id="cmp-b"></select></label>
+        <label for="cmp-a"><span class="lbl"><span class="swatch" style="background:var(--year-a)"></span>Year A</span><select id="cmp-a"></select></label>
+        <label for="cmp-b"><span class="lbl"><span class="swatch" style="background:var(--year-b)"></span>Year B</span><select id="cmp-b"></select></label>
       </div>
       <div class="daybig" id="cmp-date"></div>
       <input type="range" id="cmp-day" min="0" max="365" step="1" aria-label="Day of the water year">
@@ -206,24 +230,18 @@
       <p class="sum" id="cmp-note"></p>
     </div>
     <div class="card">
-      <table><thead><tr><th>Where</th><th id="cmp-ha">A</th><th id="cmp-hb">B</th><th>B vs A</th></tr></thead><tbody id="cmp-body"></tbody></table>
+      <p class="sum">Click a row to chart it. Clicking a flow row also selects that gauge above.</p>
+      <table><thead><tr><th>Where</th><th id="cmp-ha">A</th><th id="cmp-hb">B</th><th title="Change from Year A to Year B">Δ</th></tr></thead><tbody id="cmp-body"></tbody></table>
     </div>
-  </section>
-
-  <h2>Who this helps, and the question it answers</h2>
-  <section class="uses">
-    <div class="use"><h4>Supply planners</h4><q>If next year runs dry, what water does the plant get?</q><p>Panels put a drought year (2026) beside wetter ones at the same gauge. Planners see the quality side of the flows they already forecast.</p></div>
-    <div class="use"><h4>Water Quality &amp; Treatment</h4><q>Does the spring TOC pulse follow rising flow, and which gauge sees it first?</q><p>Connected days trace each year's path. Switch gauges and lag to find where the signal shows up earliest.</p></div>
-    <div class="use"><h4>Plant operators</h4><q>At today's flow, how close have we been to the 60 mg/L line?</q><p>Set the what-if flow to today's reading and read the range each past year delivered.</p></div>
   </section>
 
   <div class="limits">
     <h2>What this cannot tell you yet</h2>
     <ul>
       <li>Five water years of plant data. It describes patterns; it does not predict.</li>
-      <li>Most gauges sit below reservoirs, so flow there reflects releases. The two headwater creeks are the closest to natural runoff here.</li>
+      <li>Most gauges sit below reservoirs, so their flow reflects releases. The two headwater creeks are the closest to natural snowmelt runoff.</li>
       <li>Denver Water changed sources in 2026. Some of the 2026 difference may come from that, not the river.</li>
-      <li>The 2-day default lag follows Jake's Sep 4 update; he asks that the exact number not be leaned on.</li>
+      <li>The 2-day default follows Jake's Sep 4 update; he asks that the exact number not be leaned on.</li>
     </ul>
   </div>
 
@@ -245,49 +263,8 @@ const el = (tag, attrs, parent) => {
   if (parent) parent.appendChild(e);
   return e;
 };
-
-const LOCATIONS = [
-  { id: "TARCOMCO", name: "Tarryall Creek near Como", kind: "Headwater creek", via: "Tarryall Reservoir, then the South Platte below Eleven Mile, then Cheesman", note: "Headwater creek above Tarryall Reservoir. Close to natural snowmelt runoff." },
-  { id: "MCHJEFCO", name: "Michigan Creek above Jefferson", kind: "Headwater creek", via: "Joins Tarryall Creek, then Tarryall Reservoir and Cheesman", note: "Headwater creek in South Park. Close to natural snowmelt runoff." },
-  { id: "PLASPICO", name: "South Platte above Spinney", kind: "Below Antero", via: "Spinney and Eleven Mile, then Cheesman", note: "Mainstem below Antero Reservoir; partly regulated." },
-  { id: "PLABAICO", name: "North Fork at Bailey", kind: "Carries Dillon water", via: "Joins the mainstem at the town of South Platte", note: "Carries Dillon water delivered through the Roberts Tunnel at Grant, plus North Fork runoff." },
-  { id: "PLACHECO", name: "South Platte below Cheesman", kind: "Below Cheesman", via: "Joins the North Fork at the town of South Platte", note: "Mainstem directly below Cheesman Reservoir; flow is mostly releases." },
-  { id: "PLASPLCO", name: "South Platte at South Platte", kind: "Jake's gauge", via: "Mainstem only, just above the North Fork confluence", note: "Jake's gauge (DWR PLASPLCO). Mainstem only: it sits just above the North Fork confluence, so it misses the North Fork and Roberts Tunnel water that also reaches Strontia." },
-  { id: "COND26CO", name: "Conduit 26 into Foothills", kind: "Plant intake pipe", via: "3.7 mi of pipe from Strontia Springs Dam to the plant", note: "The pipe from Strontia Springs to the plant. What the plant actually drew; days with zero flow are hidden." },
-];
-LOCATIONS.forEach((l, k) => { l.n = k + 1; l.miles = D.geo.paths[l.id]?.miles ?? 0; });
-const PARAMS = {
-  alk: { label: "Alkalinity", unit: "mg/L", col: 2, digits: 0 },
-  toc: { label: "TOC", unit: "mg/L", col: 1, digits: 2 },
-};
-const WYS = [2022, 2023, 2024, 2025, 2026];
-const S = { param: "alk", loc: "PLASPLCO", lag: 2, years: new Set(WYS), connect: true, whatif: 400 };
-const START = new Date(D.start + "T00:00:00Z");
-
-const dateOf = (i) => new Date(START.getTime() + i * 864e5);
-const waterYear = (d) => (d.getUTCMonth() >= 9 ? d.getUTCFullYear() + 1 : d.getUTCFullYear());
-const dayOfWY = (d) => (d - Date.UTC(waterYear(d) - 1, 9, 1)) / 864e5;
-const fmtDate = (d) => d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
 const fmt = (v, d = 0) => v.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
 const median = (a) => { const s = a.slice().sort((x, y) => x - y), m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
-
-function hexToRgb(h) { return h.replace("#", "").match(/\w\w/g).map((x) => parseInt(x, 16)); }
-function dateColor(t) {
-  const stops = ["--seq-a", "--seq-b", "--seq-c", "--seq-d"].map((n) => hexToRgb(css(n)));
-  const f = Math.max(0, Math.min(0.9999, t)) * (stops.length - 1), k = Math.floor(f), r = f - k;
-  return "rgb(" + stops[k].map((c, j) => Math.round(c + (stops[k + 1][j] - c) * r)).join(",") + ")";
-}
-
-/* one row per Foothills sample: its flow (lagged) at the chosen location */
-function points() {
-  const flow = D.flows[S.loc], p = PARAMS[S.param];
-  return D.quality.map(([i, toc, alk]) => {
-    const y = p.col === 1 ? toc : alk, f = flow[i - S.lag];
-    const d = dateOf(i);
-    return { i, d, wy: waterYear(d), t: dayOfWY(d) / 365, y, f };
-  }).filter((r) => r.y != null && r.f != null && r.f > 0);
-}
-
 function niceTicks(min, max, n = 5) {
   const step0 = (max - min) / n, mag = 10 ** Math.floor(Math.log10(step0));
   const step = [1, 2, 2.5, 5, 10].map((m) => m * mag).find((s) => s >= step0);
@@ -295,21 +272,52 @@ function niceTicks(min, max, n = 5) {
   for (let v = Math.ceil(min / step) * step; v <= max + 1e-9; v += step) out.push(+v.toFixed(6));
   return out;
 }
+
+const LOCATIONS = [
+  { id: "TARCOMCO", name: "Tarryall Creek near Como", short: "Tarryall", kind: "Headwater creek", via: "Tarryall Reservoir, then the South Platte below Eleven Mile, then Cheesman" },
+  { id: "MCHJEFCO", name: "Michigan Creek above Jefferson", short: "Michigan Cr", kind: "Headwater creek", via: "Joins Tarryall Creek, then Tarryall Reservoir and Cheesman" },
+  { id: "PLASPICO", name: "South Platte above Spinney", short: "Above Spinney", kind: "Below Antero Reservoir", via: "Spinney and Eleven Mile, then Cheesman" },
+  { id: "PLABAICO", name: "North Fork at Bailey", short: "Bailey", kind: "Carries Dillon water from the Roberts Tunnel", via: "Joins the mainstem at the town of South Platte" },
+  { id: "PLACHECO", name: "South Platte below Cheesman", short: "Below Cheesman", kind: "Mostly Cheesman releases", via: "Joins the North Fork at the town of South Platte" },
+  { id: "PLASPLCO", name: "South Platte at South Platte", short: "S. Platte", kind: "Jake's gauge, mainstem only", via: "Just above the North Fork confluence, so it misses North Fork and Roberts Tunnel water" },
+  { id: "COND26CO", name: "Conduit 26 into Foothills", short: "Conduit 26", kind: "What the plant drew", via: "3.7 mi of pipe from Strontia Springs Dam; zero-flow days hidden" },
+];
+LOCATIONS.forEach((l, k) => { l.n = k + 1; l.miles = D.geo.paths[l.id]?.miles ?? 0; });
+const locOf = (id) => LOCATIONS.find((l) => l.id === id);
+const PARAMS = {
+  alk: { label: "Alkalinity", unit: "mg/L", key: "alk", digits: 0 },
+  toc: { label: "TOC", unit: "mg/L", key: "toc", digits: 2 },
+};
+const WYS = [2022, 2023, 2024, 2025, 2026];
+const S = { param: "alk", loc: "PLASPLCO", lag: 2, years: new Set(WYS), connect: false, whatif: null };
+const START = new Date(D.start + "T00:00:00Z");
+const dateOf = (i) => new Date(START.getTime() + i * 864e5);
+const waterYear = (d) => (d.getUTCMonth() >= 9 ? d.getUTCFullYear() + 1 : d.getUTCFullYear());
+const fmtDate = (d) => d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+const season = (d) => { const m = d.getUTCMonth() + 1; return m >= 4 && m <= 6 ? "runoff" : m >= 7 && m <= 9 ? "summer" : "fall"; };
+const SEASON_NAME = { fall: "Oct to Dec", runoff: "Apr to Jun runoff", summer: "Jul to Sep" };
+
+/* ---------- quality against flow ---------- */
+function points() {
+  const flow = D.flows[S.loc], key = PARAMS[S.param].key;
+  return D.quality.map(([i, toc, alk]) => {
+    const y = key === "toc" ? toc : alk, f = flow[i - S.lag], d = dateOf(i);
+    return { i, d, wy: waterYear(d), s: season(d), y, f };
+  }).filter((r) => r.y != null && r.f != null && r.f > 0);
+}
 function scales(all) {
   const fs = all.map((r) => r.f), ys = all.map((r) => r.y);
-  const f0 = Math.min(...fs) * 0.85, f1 = Math.max(...fs) * 1.15;
-  const yPad = (Math.max(...ys) - Math.min(...ys)) * 0.08;
-  let y0 = Math.min(...ys) - yPad, y1 = Math.max(...ys) + yPad;
+  const pad = (Math.max(...ys) - Math.min(...ys)) * 0.08;
+  let y0 = Math.min(...ys) - pad, y1 = Math.max(...ys) + pad;
   if (S.param === "alk") { y0 = Math.min(y0, 55); y1 = Math.max(y1, 65); }
-  return { f0, f1, y0, y1 };
+  return { f0: Math.min(...fs) * 0.85, f1: Math.max(...fs) * 1.15, y0, y1 };
 }
-const G = { W: 320, H: 220, l: 34, r: 10, t: 8, b: 26 };
+const G = { W: 320, H: 214, l: 32, r: 8, t: 8, b: 26 };
 const X = (sc, f) => G.l + (Math.log(f) - Math.log(sc.f0)) / (Math.log(sc.f1) - Math.log(sc.f0)) * (G.W - G.l - G.r);
 const Y = (sc, v) => G.t + (1 - (v - sc.y0) / (sc.y1 - sc.y0)) * (G.H - G.t - G.b);
 
 function drawAxes(svg, sc) {
-  const logTicks = [0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000].filter((v) => v >= sc.f0 && v <= sc.f1);
-  for (const v of logTicks) {
+  for (const v of [0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000].filter((v) => v >= sc.f0 && v <= sc.f1)) {
     el("line", { x1: X(sc, v), x2: X(sc, v), y1: G.t, y2: G.H - G.b, stroke: css("--grid") }, svg);
     el("text", { x: X(sc, v), y: G.H - G.b + 12, class: "axis", "text-anchor": "middle" }, svg).textContent = v >= 1000 ? v / 1000 + "k" : v;
   }
@@ -317,17 +325,13 @@ function drawAxes(svg, sc) {
     el("line", { x1: G.l, x2: G.W - G.r, y1: Y(sc, v), y2: Y(sc, v), stroke: css("--grid") }, svg);
     el("text", { x: G.l - 4, y: Y(sc, v) + 3, class: "axis", "text-anchor": "end" }, svg).textContent = v;
   }
-  el("text", { x: G.W - G.r, y: G.H - 2, class: "axis", "text-anchor": "end" }, svg).textContent = "flow, cfs (log)";
+  el("text", { x: G.W - G.r, y: G.H - 2, class: "axis", "text-anchor": "end" }, svg).textContent = "flow, cfs";
 }
-function drawThreshold(svg, sc) {
-  if (S.param !== "alk") return;
-  el("line", { x1: G.l, x2: G.W - G.r, y1: Y(sc, 60), y2: Y(sc, 60), stroke: css("--threshold"), "stroke-width": 1.2, "stroke-dasharray": "5 4" }, svg);
-}
-function drawWhatIf(svg, sc) {
-  if (S.whatif < sc.f0 || S.whatif > sc.f1) return;
-  const x = X(sc, S.whatif);
-  el("rect", { x: X(sc, S.whatif * 0.8), y: G.t, width: X(sc, S.whatif * 1.2) - X(sc, S.whatif * 0.8), height: G.H - G.t - G.b, fill: css("--what-if"), "fill-opacity": 0.08 }, svg);
-  el("line", { x1: x, x2: x, y1: G.t, y2: G.H - G.b, stroke: css("--what-if"), "stroke-width": 1.5 }, svg);
+function drawGuides(svg, sc) {
+  if (S.param === "alk") el("line", { x1: G.l, x2: G.W - G.r, y1: Y(sc, 60), y2: Y(sc, 60), stroke: css("--threshold"), "stroke-width": 1.2, "stroke-dasharray": "5 4" }, svg);
+  const lo = Math.max(S.whatif * 0.8, sc.f0), hi = Math.min(S.whatif * 1.2, sc.f1);
+  el("rect", { x: X(sc, lo), y: G.t, width: X(sc, hi) - X(sc, lo), height: G.H - G.t - G.b, fill: css("--what-if"), "fill-opacity": 0.1 }, svg);
+  el("line", { x1: X(sc, S.whatif), x2: X(sc, S.whatif), y1: G.t, y2: G.H - G.b, stroke: css("--what-if"), "stroke-width": 1.2 }, svg);
 }
 function drawMarks(svg, sc, rows) {
   if (S.connect) {
@@ -335,22 +339,18 @@ function drawMarks(svg, sc, rows) {
     rows.forEach((r, k) => { const gap = k && r.i - rows[k - 1].i > 3; d += (k && !gap ? "L" : "M") + X(sc, r.f).toFixed(1) + "," + Y(sc, r.y).toFixed(1); });
     el("path", { d, fill: "none", stroke: css("--path"), "stroke-width": 1 }, svg);
   }
-  for (const r of rows) el("circle", { cx: X(sc, r.f), cy: Y(sc, r.y), r: 3.4, fill: dateColor(r.t), stroke: css("--surface"), "stroke-width": 0.8 }, svg);
+  for (const r of rows) el("circle", { cx: X(sc, r.f), cy: Y(sc, r.y), r: 3.4, fill: css("--s-" + r.s), stroke: css("--surface"), "stroke-width": 0.8 }, svg);
 }
-
 function panel(wy, rows, sc) {
   const box = document.createElement("div");
   box.className = "panel";
-  const p = PARAMS[S.param];
   const below = rows.filter((r) => r.y < 60).length;
-  const sub = S.param === "alk" ? `${below} of ${rows.length} days < 60` : `${rows.length} days`;
+  const sub = S.param === "alk" ? `${below} of ${rows.length} days below 60` : `${rows.length} days`;
   box.innerHTML = `<h3>WY ${wy}<small>${sub}</small></h3>`;
-  const svg = el("svg", { viewBox: `0 0 ${G.W} ${G.H}`, role: "img", "aria-label": `${p.label} against flow, water year ${wy}` }, box);
+  const svg = el("svg", { viewBox: `0 0 ${G.W} ${G.H}`, role: "img", "aria-label": `${PARAMS[S.param].label} against flow, water year ${wy}. ${sub}.` }, box);
   drawAxes(svg, sc);
-  drawThreshold(svg, sc);
-  drawWhatIf(svg, sc);
+  drawGuides(svg, sc);
   drawMarks(svg, sc, rows);
-  el("text", { x: G.l + 2, y: G.t + 9, class: "axis" }, svg).textContent = `${p.label}, ${p.unit}`;
   if (!rows.length) el("text", { x: G.W / 2, y: G.H / 2, class: "axis", "text-anchor": "middle" }, svg).textContent = "No paired days at this gauge";
   attachHover(box, svg, sc, rows);
   return box;
@@ -361,44 +361,44 @@ function attachHover(box, svg, sc, rows) {
   tip.hidden = true;
   box.appendChild(tip);
   const ring = el("circle", { r: 6, fill: "none", stroke: css("--ink"), "stroke-width": 1.5, visibility: "hidden" }, svg);
+  const hide = () => { tip.hidden = true; ring.setAttribute("visibility", "hidden"); };
   svg.addEventListener("pointermove", (e) => {
     const pt = new DOMPoint(e.clientX, e.clientY).matrixTransform(svg.getScreenCTM().inverse());
     let best = null, bd = 144;
     for (const r of rows) { const dx = X(sc, r.f) - pt.x, dy = Y(sc, r.y) - pt.y, dd = dx * dx + dy * dy; if (dd < bd) { bd = dd; best = r; } }
-    if (!best) { tip.hidden = true; ring.setAttribute("visibility", "hidden"); return; }
+    if (!best) return hide();
     ring.setAttribute("cx", X(sc, best.f)); ring.setAttribute("cy", Y(sc, best.y)); ring.setAttribute("visibility", "visible");
     const p = PARAMS[S.param];
-    tip.innerHTML = `${fmtDate(best.d)}<br>${p.label} ${fmt(best.y, p.digits)} ${p.unit}<br>flow ${fmt(best.f)} cfs${S.lag ? ` (${S.lag} d earlier)` : ""}`;
-    const bb = box.getBoundingClientRect();
+    tip.innerHTML = `${fmtDate(best.d)} · ${SEASON_NAME[best.s]}<br>${p.label} ${fmt(best.y, p.digits)} ${p.unit}<br>flow ${fmt(best.f)} cfs${S.lag ? `, ${S.lag} d earlier` : ""}`;
     tip.hidden = false;
-    const left = Math.min(e.clientX - bb.left + 12, bb.width - tip.offsetWidth - 6);
-    tip.style.left = Math.max(6, left) + "px";
+    const bb = box.getBoundingClientRect();
+    tip.style.left = Math.max(6, Math.min(e.clientX - bb.left + 12, bb.width - tip.offsetWidth - 6)) + "px";
     tip.style.top = e.clientY - bb.top - tip.offsetHeight - 10 + "px";
   });
-  svg.addEventListener("pointerleave", () => { tip.hidden = true; ring.setAttribute("visibility", "hidden"); });
+  svg.addEventListener("pointerleave", hide);
 }
 
-/* what-if slider maps 0..1000 onto the gauge's log flow range */
-function sliderToFlow(v, sc) { return Math.exp(Math.log(sc.f0) + (v / 1000) * (Math.log(sc.f1) - Math.log(sc.f0))); }
-function flowToSlider(f, sc) { return Math.round(((Math.log(f) - Math.log(sc.f0)) / (Math.log(sc.f1) - Math.log(sc.f0))) * 1000); }
-function roundFlow(f) { const m = 10 ** Math.max(0, Math.floor(Math.log10(f)) - 1); return Math.round(f / m) * m; }
-
+/* ---------- what-if flow ---------- */
+const sliderToFlow = (v, sc) => Math.exp(Math.log(sc.f0) + (v / 1000) * (Math.log(sc.f1) - Math.log(sc.f0)));
+const flowToSlider = (f, sc) => Math.round(((Math.log(f) - Math.log(sc.f0)) / (Math.log(sc.f1) - Math.log(sc.f0))) * 1000);
+const roundFlow = (f) => { const m = 10 ** Math.max(0, Math.floor(Math.log10(f)) - 1); return Math.round(f / m) * m; };
 function renderReadout(byYear) {
   const p = PARAMS[S.param];
-  $("wiout").textContent = `${fmt(S.whatif)} cfs ±20%`;
+  $("wiout").textContent = `${fmt(S.whatif)} cfs`;
   $("rohead").textContent = `Median ${p.label}`;
   const stats = [];
   $("rotable").innerHTML = WYS.filter((wy) => S.years.has(wy)).map((wy) => {
     const near = (byYear[wy] || []).filter((r) => r.f >= S.whatif * 0.8 && r.f <= S.whatif * 1.2).map((r) => r.y);
-    if (near.length < 3) return `<tr><td>${wy}</td><td class="muted" colspan="2">too few days</td><td>${near.length}</td></tr>`;
+    if (near.length < 3) return `<tr><td>${wy}</td><td class="muted" colspan="2">fewer than 3 days</td><td>${near.length}</td></tr>`;
     const m = median(near);
-    stats.push({ wy, m });
+    stats.push({ wy, m, n: near.length });
     const flag = S.param === "alk" && m < 60 ? ' class="flag"' : "";
     return `<tr><td>${wy}</td><td${flag}>${fmt(m, p.digits)}</td><td>${fmt(Math.min(...near), p.digits)}–${fmt(Math.max(...near), p.digits)}</td><td>${near.length}</td></tr>`;
   }).join("");
-  if (stats.length < 2) { $("rosum").textContent = "Move the slider to a flow that more than one year reached."; return; }
+  const days = stats.reduce((t, s) => t + s.n, 0);
+  if (stats.length < 2) { $("rosum").textContent = `Days within ±20% of ${fmt(S.whatif)} cfs. Move the slider to a flow more than one year reached.`; return; }
   const lo = stats.reduce((a, b) => (b.m < a.m ? b : a)), hi = stats.reduce((a, b) => (b.m > a.m ? b : a));
-  $("rosum").textContent = `Same flow, different water: median ${p.label.toLowerCase()} runs from ${fmt(lo.m, p.digits)} (WY ${lo.wy}) to ${fmt(hi.m, p.digits)} (WY ${hi.wy}) ${p.unit}.`;
+  $("rosum").innerHTML = `${days} days within ±20% of ${fmt(S.whatif)} cfs. <strong>Same flow, different water:</strong> median ${p.label} runs from ${fmt(lo.m, p.digits)} (WY ${lo.wy}) to ${fmt(hi.m, p.digits)} (WY ${hi.wy}) ${p.unit}.`;
 }
 
 /* ---------- system map ---------- */
@@ -406,137 +406,96 @@ const GEO = D.geo;
 const MB = (() => {
   const all = [...GEO.basin, ...Object.values(GEO.gauges), ...GEO.reservoirs.map((r) => r.ll), GEO.plant];
   const lons = all.map((p) => p[0]), lats = all.map((p) => p[1]);
-  return { lon0: Math.min(...lons) - 0.04, lon1: Math.max(...lons) + 0.12, lat0: Math.min(...lats) - 0.03, lat1: Math.max(...lats) + 0.03 };
+  return { lon0: Math.min(...lons) - 0.04, lon1: Math.max(...lons) + 0.14, lat0: Math.min(...lats) - 0.03, lat1: Math.max(...lats) + 0.03 };
 })();
 const MK = Math.cos((39.3 * Math.PI) / 180), MS = 620;
 const MW = Math.round((MB.lon1 - MB.lon0) * MK * MS), MH = Math.round((MB.lat1 - MB.lat0) * MS);
+const MAPK = MH / 340;
 const mp = (ll) => [(ll[0] - MB.lon0) * MK * MS, (MB.lat1 - ll[1]) * MS];
 const mpath = (coords) => coords.map((c, k) => (k ? "L" : "M") + mp(c).map((v) => v.toFixed(1)).join(",")).join("");
+const LABEL_OFFSETS = { "Strontia Springs": [-8, -10, "end"], Cheesman: [16, 4, "start"] };
 function mapLabel(g, ll, text, dx, dy, cls = "", anchor = "start") {
   const [x, y] = mp(ll);
-  el("text", { x: x + dx, y: y + dy, class: "maplbl " + cls, "text-anchor": anchor }, g).textContent = text;
+  el("text", { x: x + dx * MAPK, y: y + dy * MAPK, class: "maplbl " + cls, "text-anchor": anchor, "font-size": 11.5 * MAPK, "stroke-width": 3 * MAPK }, g).textContent = text;
 }
-const LABEL_OFFSETS = { "Strontia Springs": [-8, -10, "end"], Cheesman: [16, 4, "start"] };
 function drawMapBase(svg) {
   el("path", { d: mpath(GEO.basin) + "Z", fill: css("--basin"), stroke: css("--line"), "stroke-width": 1 }, svg);
-  for (const p of Object.values(GEO.paths)) el("path", { d: mpath(p.path), fill: "none", stroke: css("--river"), "stroke-width": 1.6, "stroke-linejoin": "round" }, svg);
-  for (const l of GEO.grant) el("path", { d: mpath(l), fill: "none", stroke: css("--river"), "stroke-width": 1.6 }, svg);
-  el("path", { d: mpath(GEO.roberts), fill: "none", stroke: css("--tunnel"), "stroke-width": 1.8, "stroke-dasharray": "5 4" }, svg);
+  for (const p of Object.values(GEO.paths)) el("path", { d: mpath(p.path), fill: "none", stroke: css("--river"), "stroke-width": 1.6 * MAPK, "stroke-linejoin": "round" }, svg);
+  for (const l of GEO.grant) el("path", { d: mpath(l), fill: "none", stroke: css("--river"), "stroke-width": 1.6 * MAPK }, svg);
+  el("path", { d: mpath(GEO.roberts), fill: "none", stroke: css("--tunnel"), "stroke-width": 1.8 * MAPK, "stroke-dasharray": `${5 * MAPK} ${4 * MAPK}` }, svg);
   mapLabel(svg, [(GEO.roberts[0][0] + GEO.roberts[1][0]) / 2, (GEO.roberts[0][1] + GEO.roberts[1][1]) / 2], "Roberts Tunnel", 4, -6);
-  for (const j of GEO.joins) { const [x, y] = mp(j.ll); el("circle", { cx: x, cy: y, r: 2.5, fill: css("--ink-2") }, svg); }
+  for (const j of GEO.joins) { const [x, y] = mp(j.ll); el("circle", { cx: x, cy: y, r: 2.5 * MAPK, fill: css("--ink-2") }, svg); }
   for (const r of GEO.reservoirs) {
     const [x, y] = mp(r.ll);
-    el("rect", { x: x - 4, y: y - 4, width: 8, height: 8, rx: 1.5, fill: css("--reservoir") }, svg);
+    el("rect", { x: x - 4 * MAPK, y: y - 4 * MAPK, width: 8 * MAPK, height: 8 * MAPK, rx: 1.5 * MAPK, fill: css("--reservoir") }, svg);
     const [dx, dy, anchor] = LABEL_OFFSETS[r.name] || [8, 4, "start"];
     mapLabel(svg, r.ll, r.name, dx, dy, "", anchor);
   }
-  const [px_, py_] = mp(GEO.plant);
-  el("rect", { x: px_ - 6, y: py_ - 6, width: 12, height: 12, rx: 2, fill: css("--plant") }, svg);
+  const [px, py] = mp(GEO.plant);
+  el("rect", { x: px - 6 * MAPK, y: py - 6 * MAPK, width: 12 * MAPK, height: 12 * MAPK, rx: 2 * MAPK, fill: css("--plant") }, svg);
   mapLabel(svg, GEO.plant, "Foothills plant", 10, 4, "strong");
-  drawScale(svg);
-}
-function drawScale(svg) {
-  const pxPerMile = MS / 69, x0 = 14, y0 = MH - 14, len = 10 * pxPerMile;
-  el("line", { x1: x0, x2: x0 + len, y1: y0, y2: y0, stroke: css("--ink-2"), "stroke-width": 1.5 }, svg);
-  for (const x of [x0, x0 + len]) el("line", { x1: x, x2: x, y1: y0 - 4, y2: y0 + 1, stroke: css("--ink-2"), "stroke-width": 1.5 }, svg);
-  el("text", { x: x0 + len + 6, y: y0 + 3, class: "maplbl" }, svg).textContent = "10 mi";
-}
-function drawSelection(svg) {
-  const acc = css("--accent");
-  const p = GEO.paths[S.loc];
-  if (p) el("path", { d: mpath(p.path), fill: "none", stroke: acc, "stroke-width": 3.5, "stroke-linejoin": "round", "stroke-linecap": "round" }, svg);
-  el("path", { d: mpath(GEO.conduit26), fill: "none", stroke: acc, "stroke-width": 3.5, "stroke-linecap": "round" }, svg);
-}
-function drawGauges(svg) {
-  for (const l of LOCATIONS) {
-    const [x, y] = mp(GEO.gauges[l.id]);
-    const on = l.id === S.loc;
-    const g = el("g", { class: "gauge", tabindex: 0, role: "button", "aria-label": `${l.name}, ${l.miles} river miles to Strontia` }, svg);
-    el("circle", { cx: x, cy: y, r: on ? 10 : 8, fill: on ? css("--accent") : css("--surface"), stroke: on ? css("--accent") : css("--ink"), "stroke-width": 1.5 }, g);
-    el("text", { x, y, class: "gnum", fill: on ? "#fff" : css("--ink") }, g).textContent = l.n;
-    el("title", {}, g).textContent = `${l.name}: ${l.miles} river mi to Strontia`;
-    const pick = () => selectLoc(l.id);
-    g.addEventListener("click", pick);
-    g.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(); } });
-  }
+  const len = 10 * MS / 69, x0 = 14 * MAPK, y0 = MH - 14 * MAPK;
+  el("path", { d: `M${x0},${y0 - 4 * MAPK}V${y0}H${x0 + len}V${y0 - 4 * MAPK}`, fill: "none", stroke: css("--ink-2"), "stroke-width": 1.5 * MAPK }, svg);
+  el("text", { x: x0 + len + 6 * MAPK, y: y0 + 4 * MAPK, class: "maplbl", "font-size": 11.5 * MAPK, "stroke-width": 3 * MAPK }, svg).textContent = "10 mi";
 }
 function drawMap() {
   const svg = $("map");
   svg.innerHTML = "";
   svg.setAttribute("viewBox", `0 0 ${MW} ${MH}`);
   drawMapBase(svg);
-  drawSelection(svg);
-  drawGauges(svg);
+  const p = GEO.paths[S.loc];
+  if (p) el("path", { d: mpath(p.path), fill: "none", stroke: css("--accent"), "stroke-width": 3.5 * MAPK, "stroke-linejoin": "round", "stroke-linecap": "round" }, svg);
+  el("path", { d: mpath(GEO.conduit26), fill: "none", stroke: css("--accent"), "stroke-width": 3.5 * MAPK, "stroke-linecap": "round" }, svg);
+  for (const l of LOCATIONS) {
+    const [x, y] = mp(GEO.gauges[l.id]);
+    const on = l.id === S.loc;
+    const g = el("g", { class: "gauge", tabindex: 0, role: "button", "aria-pressed": String(on), "aria-label": `${l.n}. ${l.name}, ${l.miles} river miles to Strontia` }, svg);
+    el("circle", { cx: x, cy: y, r: 16 * MAPK, fill: "transparent" }, g);
+    el("circle", { cx: x, cy: y, r: (on ? 11 : 9.5) * MAPK, fill: on ? css("--accent") : css("--surface"), stroke: on ? css("--accent") : css("--ink"), "stroke-width": 1.5 * MAPK }, g);
+    el("text", { x, y, class: "gnum", "font-size": 11 * MAPK, fill: on ? "#fff" : css("--ink") }, g).textContent = l.n;
+    el("title", {}, g).textContent = `${l.name}: ${l.miles} river mi to Strontia`;
+    g.addEventListener("click", () => selectLoc(l.id));
+    g.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); selectLoc(l.id); } });
+  }
 }
 function renderLadder() {
-  const rows = LOCATIONS.map((l) => `<button type="button" class="step" data-id="${l.id}" aria-pressed="${l.id === S.loc}">
-      <span class="n">${l.n}</span><span class="nm">${l.name}</span><span class="mi">${l.id === "COND26CO" ? "at dam" : l.miles + " mi"}</span>
-      <span class="via">${l.kind} · ${l.via}</span></button>`).join("");
-  $("ladder").innerHTML = rows + `<div class="step end"><span class="n">F</span><span class="nm">Foothills Treatment Plant</span><span class="mi"></span><span class="via">Where TOC and alkalinity are measured</span></div>`;
+  $("ladder").innerHTML = LOCATIONS.map((l) => {
+    const on = l.id === S.loc;
+    return `<button type="button" class="step" data-id="${l.id}" aria-pressed="${on}"><span class="n">${l.n}</span><span class="nm">${l.name}</span><span class="mi">${l.id === "COND26CO" ? "at dam" : l.miles + " mi"}</span>${on ? `<span class="via">${l.kind}. ${l.via}.</span>` : ""}</button>`;
+  }).join("") + `<div class="step end"><span class="n">F</span><span class="nm">Foothills Treatment Plant</span><span class="mi"></span></div>`;
 }
 $("ladder").addEventListener("click", (e) => { const b = e.target.closest("button.step"); if (b) selectLoc(b.dataset.id); });
-function selectLoc(id) { S.loc = id; $("loc").value = id; render(); }
-
-function render() {
-  const loc = LOCATIONS.find((l) => l.id === S.loc);
-  $("locnote").textContent = `${loc.name}: ${loc.note}`;
-  drawMap();
-  renderLadder();
-  $("thkey").hidden = S.param !== "alk";
-  const all = points();
-  const sc = scales(all);
-  S.whatif = Math.min(Math.max(S.whatif, sc.f0), sc.f1);
-  $("whatif").value = flowToSlider(S.whatif, sc);
-  const byYear = {};
-  for (const r of all) (byYear[r.wy] ||= []).push(r);
-  const grid = $("grid");
-  grid.querySelectorAll(".panel:not(.readout)").forEach((n) => n.remove());
-  for (const wy of WYS.filter((w) => S.years.has(w))) grid.insertBefore(panel(wy, byYear[wy] || [], sc), $("readout"));
-  renderReadout(byYear);
-  renderCompare();
-  $("whatif").oninput = (e) => { S.whatif = roundFlow(sliderToFlow(+e.target.value, sc)); render(); };
+function selectLoc(id) {
+  if (id === S.loc) return;
+  S.loc = id;
+  S.whatif = null;
+  C.sel = "f-" + id;
+  render();
 }
-
-$("loc").innerHTML = LOCATIONS.map((l) => `<option value="${l.id}">${l.name}</option>`).join("");
-$("loc").value = S.loc;
-$("loc").onchange = (e) => selectLoc(e.target.value);
-for (const b of $("param").querySelectorAll("button")) b.onclick = () => {
-  S.param = b.dataset.p;
-  $("param").querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
-  render();
-};
-$("lag").oninput = (e) => { S.lag = +e.target.value; $("lagout").textContent = `${S.lag} day${S.lag === 1 ? "" : "s"}`; render(); };
-$("connect").onchange = (e) => { S.connect = e.target.checked; render(); };
-$("years").innerHTML = WYS.map((y) => `<button type="button" class="chip" data-y="${y}" aria-pressed="true">${y}</button>`).join("");
-$("years").onclick = (e) => {
-  const b = e.target.closest(".chip");
-  if (!b) return;
-  const y = +b.dataset.y;
-  if (S.years.has(y) && S.years.size > 1) S.years.delete(y); else S.years.add(y);
-  b.setAttribute("aria-pressed", String(S.years.has(y)));
-  render();
-};
 
 /* ---------- two years, same day ---------- */
 const CMONTHS = ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"];
 const CSTART = [0, 31, 61, 92, 123, 151, 182, 212, 243, 273, 304, 335];
-const C = { a: 2024, b: 2026, day: 182, sel: "q-alk" };
-const slotDate = (wy, slot) => new Date(Date.UTC(wy - 1, 9, 1) + slot * 864e5);
-const slotIndex = (wy, slot) => Math.round((slotDate(wy, slot) - START) / 864e5);
-function seriesFor(row, wy) {
-  return Array.from({ length: 366 }, (_, s) => row.value(wy, s));
+const C = { a: 2024, b: 2026, day: 196, sel: "q-alk" };
+function slotDate(wy, slot) {
+  let m = 0;
+  while (m < 11 && CSTART[m + 1] <= slot) m++;
+  return Date.UTC(m < 3 ? wy - 1 : wy, (m + 9) % 12, slot - CSTART[m] + 1);
 }
-const qualityByIndex = new Map(D.quality.map(([i, toc, alk]) => [i, { toc, alk }]));
+const flowIndex = (wy, slot) => Math.round((slotDate(wy, slot) - START) / 864e5);
+const snowIndex = (wy, slot) => Math.round((slotDate(wy, slot) - Date.UTC(wy - 1, 9, 1)) / 864e5);
+const quality = new Map(D.quality.map(([i, toc, alk]) => [i, { toc, alk }]));
 const CMP_ROWS = [
-  { group: "Snowpack (SWE, in)" },
-  ...D.snow.map((s) => ({ id: s.id, name: s.name, unit: "in", digits: 1, median: s.median, value: (wy, slot) => s.years[wy]?.[slot] ?? null })),
+  { group: "Snowpack in the basin (SWE, inches)" },
+  ...D.snow.map((s) => ({ id: s.id, name: s.name, short: s.name, unit: "in", digits: 1, snow: true, median: s.median, value: (wy, slot) => s.years[wy]?.[snowIndex(wy, slot)] ?? null })),
   { group: "River flow (cfs), upstream to plant" },
-  ...LOCATIONS.map((l) => ({ id: "f-" + l.id, loc: l.id, name: `${l.n}. ${l.name}`, unit: "cfs", digits: 0, value: (wy, slot) => { const v = D.flows[l.id][slotIndex(wy, slot)]; return v == null ? null : v; } })),
+  ...LOCATIONS.map((l) => ({ id: "f-" + l.id, loc: l.id, name: `${l.n}. ${l.name}`, short: `${l.n}. ${l.short}`, unit: "cfs", digits: 0, value: (wy, slot) => D.flows[l.id][flowIndex(wy, slot)] ?? null })),
   { group: "Arriving at Foothills (mg/L)" },
-  { id: "q-toc", name: "TOC", unit: "mg/L", digits: 2, value: (wy, slot) => qualityByIndex.get(slotIndex(wy, slot))?.toc ?? null },
-  { id: "q-alk", name: "Alkalinity", unit: "mg/L", digits: 0, threshold: 60, value: (wy, slot) => qualityByIndex.get(slotIndex(wy, slot))?.alk ?? null },
+  { id: "q-toc", name: "TOC", short: "TOC", unit: "mg/L", digits: 2, value: (wy, slot) => quality.get(flowIndex(wy, slot))?.toc ?? null },
+  { id: "q-alk", name: "Alkalinity", short: "Alkalinity", unit: "mg/L", digits: 0, threshold: 60, value: (wy, slot) => quality.get(flowIndex(wy, slot))?.alk ?? null },
 ];
-function cmpLabel(slot) { let m = 0; while (m < 11 && CSTART[m + 1] <= slot) m++; return `${CMONTHS[m]} ${slot - CSTART[m] + 1}`; }
+const cmpLabel = (slot) => { let m = 0; while (m < 11 && CSTART[m + 1] <= slot) m++; return `${CMONTHS[m]} ${slot - CSTART[m] + 1}`; };
+const seriesFor = (row, wy) => Array.from({ length: 366 }, (_, s) => row.value(wy, s));
 function cmpChart(row) {
   const svg = $("cmp-chart");
   svg.innerHTML = "";
@@ -549,39 +508,56 @@ function cmpChart(row) {
   const vals = lines.flatMap((s) => s.v.filter((x) => x != null));
   if (!vals.length) { el("text", { x: W / 2, y: H / 2, class: "axis", "text-anchor": "middle" }, svg).textContent = "No readings in either year"; return; }
   const y1 = Math.max(...vals, row.threshold || 0) * 1.08, y0 = row.unit === "mg/L" ? Math.min(...vals) * 0.9 : 0;
-  const X = (s) => l + (s / 365) * (W - l - r), Y = (v) => t + (1 - (v - y0) / (y1 - y0)) * (H - t - b);
+  const X_ = (s) => l + (s / 365) * (W - l - r), Y_ = (v) => t + (1 - (v - y0) / (y1 - y0)) * (H - t - b);
   CSTART.forEach((s, m) => {
-    el("line", { x1: X(s), x2: X(s), y1: t, y2: H - b, stroke: css("--grid") }, svg);
-    if (m % 2 === 0) el("text", { x: X(s) + 2, y: H - b + 13, class: "axis" }, svg).textContent = CMONTHS[m];
+    el("line", { x1: X_(s), x2: X_(s), y1: t, y2: H - b, stroke: css("--grid") }, svg);
+    if (m % 2 === 0) el("text", { x: X_(s) + 2, y: H - b + 13, class: "axis" }, svg).textContent = CMONTHS[m];
   });
-  for (const v of niceTicks(y0, y1, 4)) el("text", { x: l - 4, y: Y(v) + 3, class: "axis", "text-anchor": "end" }, svg).textContent = v;
-  if (row.threshold) el("line", { x1: l, x2: W - r, y1: Y(row.threshold), y2: Y(row.threshold), stroke: css("--threshold"), "stroke-dasharray": "5 4" }, svg);
+  for (const v of niceTicks(y0, y1, 4)) el("text", { x: l - 4, y: Y_(v) + 3, class: "axis", "text-anchor": "end" }, svg).textContent = v;
+  if (row.threshold) el("line", { x1: l, x2: W - r, y1: Y_(row.threshold), y2: Y_(row.threshold), stroke: css("--threshold"), "stroke-dasharray": "5 4" }, svg);
   for (const s of lines) {
     let d = "", pen = false;
-    s.v.forEach((v, i) => { if (v == null) { pen = false; return; } d += (pen ? "L" : "M") + X(i).toFixed(1) + "," + Y(v).toFixed(1); pen = true; });
+    s.v.forEach((v, i) => { if (v == null) { pen = false; return; } d += (pen ? "L" : "M") + X_(i).toFixed(1) + "," + Y_(v).toFixed(1); pen = true; });
     el("path", { d, fill: "none", stroke: s.c, "stroke-width": s.w, "stroke-dasharray": s.dash || "", "stroke-linejoin": "round" }, svg);
   }
-  el("line", { x1: X(C.day), x2: X(C.day), y1: t, y2: H - b, stroke: css("--ink-2") }, svg);
-  for (const s of lines.filter((s) => s.dot)) { const v = s.v[C.day]; if (v != null) el("circle", { cx: X(C.day), cy: Y(v), r: 4, fill: s.c, stroke: css("--surface"), "stroke-width": 2 }, svg); }
+  el("line", { x1: X_(C.day), x2: X_(C.day), y1: t, y2: H - b, stroke: css("--ink-2") }, svg);
+  for (const s of lines.filter((s) => s.dot)) { const v = s.v[C.day]; if (v != null) el("circle", { cx: X_(C.day), cy: Y_(v), r: 4, fill: s.c, stroke: css("--surface"), "stroke-width": 2 }, svg); }
+}
+function deltaCell(r, va, vb) {
+  if (va == null || vb == null) return '<span class="muted">—</span>';
+  if (va === 0) return '<span class="muted">n/a</span>';
+  if (r.snow && (va === 0 || vb === 0)) return '<span class="muted">—</span>';
+  const d = Math.round(((vb - va) / va) * 100);
+  return d === 0 ? "0%" : `${d < 0 ? "▼" : "▲"} ${Math.abs(d)}%`;
+}
+function valueCell(r, v) {
+  if (v == null) return '<span class="muted">—</span>';
+  return `<span${r.threshold && v < r.threshold ? ' class="flag"' : ""}>${fmt(v, r.digits)}</span>`;
 }
 function renderCompare() {
+  const qRow = S.param === "toc" ? "q-toc" : "q-alk";
+  if (C.sel.startsWith("q-")) C.sel = qRow;
   $("cmp-date").innerHTML = `${cmpLabel(C.day)} <small>WY ${C.a} vs WY ${C.b}</small>`;
   $("cmp-ha").textContent = C.a; $("cmp-hb").textContent = C.b;
+  for (const [id, other] of [["cmp-a", C.b], ["cmp-b", C.a]]) for (const o of $(id).options) o.disabled = +o.value === other;
   const row = CMP_ROWS.find((r) => r.id === C.sel);
   $("cmp-title").textContent = `${row.name.replace(/^\d+\. /, "")}, ${row.unit}`;
   cmpChart(row);
-  const notes = [];
-  if (row.median) notes.push("Dashed: median day across the SNOTEL record.");
-  if (row.id.startsWith("q-")) notes.push("No plant samples January to March.");
-  $("cmp-note").textContent = notes.join(" ");
+  $("cmp-note").textContent = [row.median && "Dashed: median day across the SNOTEL record.", row.id.startsWith("q-") && "No plant samples January to March.", row.threshold && "Red dashed line: 60 mg/L."].filter(Boolean).join(" ");
   $("cmp-body").innerHTML = CMP_ROWS.map((r) => {
     if (r.group) return `<tr class="grp"><td colspan="4">${r.group}</td></tr>`;
     const va = r.value(C.a, C.day), vb = r.value(C.b, C.day);
-    const delta = va && vb != null ? Math.round(((vb - va) / va) * 100) : null;
-    const cell = (v) => (v == null ? '<span class="muted">—</span>' : `<span${r.threshold && v < r.threshold ? ' class="flag"' : ""}>${fmt(v, r.digits)}</span>`);
-    return `<tr class="row${r.id === C.sel ? " sel" : ""}" data-id="${r.id}"><td>${r.name}</td><td>${cell(va)}</td><td>${cell(vb)}</td><td class="${delta != null && delta < 0 ? "dn" : ""}">${delta == null ? "—" : (delta > 0 ? "+" : "") + delta + "%"}</td></tr>`;
+    const here = r.loc === S.loc ? " here" : "";
+    return `<tr class="row${here}" data-id="${r.id}" tabindex="0" aria-selected="${r.id === C.sel}"><td><span class="long">${r.name}</span><span class="short">${r.short}</span></td><td>${valueCell(r, va)}</td><td>${valueCell(r, vb)}</td><td>${deltaCell(r, va, vb)}</td></tr>`;
   }).join("");
 }
+function pickRow(id) {
+  C.sel = id;
+  const row = CMP_ROWS.find((r) => r.id === id);
+  if (row.loc && row.loc !== S.loc) { S.loc = row.loc; S.whatif = null; render(); } else renderCompare();
+}
+$("cmp-body").addEventListener("click", (e) => { const tr = e.target.closest("tr.row"); if (tr) pickRow(tr.dataset.id); });
+$("cmp-body").addEventListener("keydown", (e) => { const tr = e.target.closest("tr.row"); if (tr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); pickRow(tr.dataset.id); } });
 for (const [id, key] of [["cmp-a", "a"], ["cmp-b", "b"]]) {
   $(id).innerHTML = WYS.slice().reverse().map((y) => `<option value="${y}">WY ${y}</option>`).join("");
   $(id).value = C[key];
@@ -589,8 +565,51 @@ for (const [id, key] of [["cmp-a", "a"], ["cmp-b", "b"]]) {
 }
 $("cmp-day").value = C.day;
 $("cmp-day").oninput = (e) => { C.day = +e.target.value; renderCompare(); };
-$("cmp-body").addEventListener("click", (e) => { const tr = e.target.closest("tr.row"); if (tr) { C.sel = tr.dataset.id; renderCompare(); } });
 
+/* ---------- page ---------- */
+function renderChips() {
+  for (const b of $("years").querySelectorAll(".chip")) {
+    const on = S.years.has(+b.dataset.y), last = on && S.years.size === 1;
+    b.setAttribute("aria-pressed", String(on));
+    b.setAttribute("aria-disabled", String(last));
+    b.title = last ? "At least one year stays selected" : on ? "Hide this year" : "Show this year";
+  }
+}
+function render() {
+  const loc = locOf(S.loc), p = PARAMS[S.param];
+  $("chartsTitle").textContent = `${p.label} at Foothills against flow at gauge ${loc.n}, ${loc.name}`;
+  $("thkey").hidden = S.param !== "alk";
+  drawMap();
+  renderLadder();
+  renderChips();
+  const all = points(), sc = scales(all);
+  if (S.whatif == null) S.whatif = roundFlow(median(all.map((r) => r.f)));
+  S.whatif = Math.min(Math.max(S.whatif, sc.f0), sc.f1);
+  $("whatif").value = flowToSlider(S.whatif, sc);
+  $("whatif").oninput = (e) => { S.whatif = roundFlow(sliderToFlow(+e.target.value, sc)); render(); };
+  const byYear = {};
+  for (const r of all) (byYear[r.wy] ||= []).push(r);
+  $("panels").replaceChildren(...WYS.filter((w) => S.years.has(w)).map((wy) => panel(wy, byYear[wy] || [], sc)));
+  renderReadout(byYear);
+  renderCompare();
+}
+
+for (const b of $("param").querySelectorAll("button")) b.onclick = () => {
+  S.param = b.dataset.p;
+  $("param").querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+  render();
+};
+$("lag").oninput = (e) => { S.lag = +e.target.value; $("lagout").textContent = `${S.lag} day${S.lag === 1 ? "" : "s"}`; render(); };
+$("connect").checked = S.connect;
+$("connect").onchange = (e) => { S.connect = e.target.checked; render(); };
+$("years").innerHTML = WYS.map((y) => `<button type="button" class="chip" data-y="${y}">${y}</button>`).join("");
+$("years").onclick = (e) => {
+  const b = e.target.closest(".chip");
+  if (!b) return;
+  const y = +b.dataset.y;
+  if (S.years.has(y)) { if (S.years.size > 1) S.years.delete(y); } else S.years.add(y);
+  render();
+};
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change", render);
 new MutationObserver(render).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 render();
